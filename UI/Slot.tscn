@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://buvo8jsk4yha1"]
+
+[ext_resource type="Script" uid="uid://mbngaed10grn" path="res://Game/2048/UI/Slot.gd" id="1_8af2y"]
+[ext_resource type="FontFile" uid="uid://bkhnxruyird0e" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_ta0f7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ta0f7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0, 0, 0, 0.7372549)
+shadow_size = 8
+shadow_offset = Vector2(8, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8af2y"]
+font = ExtResource("1_ta0f7")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.8666667)
+shadow_offset = Vector2(4, 2)
+
+[node name="Slot" type="PanelContainer" unique_id=306544168]
+custom_minimum_size = Vector2(150, 150)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ta0f7")
+script = ExtResource("1_8af2y")
+
+[node name="Label" type="Label" parent="." unique_id=1651582702]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "1024"
+label_settings = SubResource("LabelSettings_8af2y")
+horizontal_alignment = 1
+vertical_alignment = 1

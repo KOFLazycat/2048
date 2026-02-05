@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://borrpb1llegsx"]
+
+[ext_resource type="FontFile" uid="uid://bkhnxruyird0e" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_41jff"]
+[ext_resource type="Script" uid="uid://dlnqh1mhsu5vt" path="res://Game/2048/Scenes/Core/SlotGridContainer.gd" id="2_evvmv"]
+[ext_resource type="PackedScene" uid="uid://buvo8jsk4yha1" path="res://Game/2048/UI/Slot.tscn" id="2_mnjgj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb44h"]
+bg_color = Color(0.7882353, 0.69411767, 0.6, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnjgj"]
+font = ExtResource("1_41jff")
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.84705883)
+shadow_offset = Vector2(4, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41jff"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+shadow_color = Color(0, 0, 0, 0.78039217)
+shadow_size = 8
+shadow_offset = Vector2(8, 4)
+
+[node name="Main" type="Node2D" unique_id=1826947482]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1100807701]
+
+[node name="PanelContainer" type="PanelContainer" parent="UI" unique_id=1162097354]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cb44h")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer" unique_id=1039039140]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer" unique_id=892281673]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ScoreLabel" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer" unique_id=539645467]
+unique_name_in_owner = true
+layout_mode = 2
+text = "游戏分数："
+label_settings = SubResource("LabelSettings_mnjgj")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer" unique_id=2092143959]
+custom_minimum_size = Vector2(800, 800)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_41jff")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=548560713]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="SlotGridContainer" type="GridContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=664647049]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 4
+script = ExtResource("2_evvmv")
+
+[node name="Slot" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=306544168 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot2" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=648556267 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1226216375 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=738611554 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot5" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=541916615 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot6" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1884643260 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot7" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1436082082 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot8" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=497374075 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot9" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=484503621 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot10" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1033518975 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot11" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=463782367 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot12" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1390515713 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot13" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1346892638 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot14" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=1422552409 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot15" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=309741185 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="Slot16" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=2002234291 instance=ExtResource("2_mnjgj")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer" unique_id=1415239233]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 32
+
+[node name="Button" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=230236977]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_41jff")
+theme_override_font_sizes/font_size = 32
+text = "关闭"
+
+[node name="Button2" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1631954708]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_41jff")
+theme_override_font_sizes/font_size = 32
+text = "重开"
+
+[node name="Button3" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1018579289]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_41jff")
+theme_override_font_sizes/font_size = 32
+text = "撤回"
+
+[node name="Button4" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1773943112]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_41jff")
+theme_override_font_sizes/font_size = 32
+text = "静音"
+
+[node name="UI_EX" type="CanvasLayer" parent="." unique_id=1752384934]
+layer = 2
