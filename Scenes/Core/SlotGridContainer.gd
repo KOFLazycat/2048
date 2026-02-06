@@ -40,26 +40,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.is_action_pressed("moveLeft"):
-			move(rows)
-			updateSlotsByRows()
-			updateRemainingSlots()
-			createSlotScore()
-		if event.is_action_pressed("moveRight"):
-			move(rows, true)
-			updateSlotsByRows()
-			updateRemainingSlots()
-			createSlotScore()
-		if event.is_action_pressed("moveUp"):
-			move(cols)
-			updateSlotsByCols()
-			updateRemainingSlots()
-			createSlotScore()
-		if event.is_action_pressed("moveDown"):
-			move(cols, true)
-			updateSlotsByCols()
-			updateRemainingSlots()
-			createSlotScore()
+		if canMove():
+			if event.is_action_pressed("moveLeft"): moveRows()
+			if event.is_action_pressed("moveRight"): moveRows(true)
+			if event.is_action_pressed("moveUp"): moveCols()
+			if event.is_action_pressed("moveDown"): moveCols(true)
 
 #endregion
 
@@ -72,10 +57,59 @@ func _input(event: InputEvent) -> void:
 
 #region Tools
 
+func mergeSlots(arrs: Array, isReverse: bool = false) -> void:
+	for arr in arrs.size():
+		var arrSize: int = arrs[arr].size()
+		if isReverse:
+			for i: int in range(arrSize - 1, 0, -1):
+				if arrs[arr][i] == arrs[arr][i - 1] and arrs[arr][i] != 0:
+					arrs[arr][i] *= 2
+					arrs[arr][i - 1] = 0
+		else:
+			for i: int in arrSize - 1:
+				if arrs[arr][i] == arrs[arr][i + 1] and arrs[arr][i] != 0:
+					arrs[arr][i] *= 2
+					arrs[arr][i + 1] = 0
+
+
 func updateRemainingSlots() -> void:
 	remainingSlots = []
 	for i: int in slots.size():
 		if slots[i] == 0: remainingSlots.append(i)
+
+
+func canMove() -> bool:
+	if slots.has(0): 
+		return true
+	else:
+		for i: int in rows.size():
+			for j: int in rows[i].size() - 1:
+				if rows[i][j] == rows[i][j + 1]:
+					return true
+		for i: int in cols.size():
+			for j: int in cols[i].size() - 1:
+				if cols[i][j] == cols[i][j + 1]:
+					return true
+	
+	return false
+
+
+func moveRows(isReverse: bool = false) -> void:
+	move(rows, isReverse)
+	mergeSlots(rows, isReverse)
+	updateSlotsByRows()
+	updateRemainingSlots()
+	createSlotScore()
+	updateGameScore()
+
+
+func moveCols(isReverse: bool = false) -> void:
+	move(cols, isReverse)
+	mergeSlots(cols, isReverse)
+	updateSlotsByCols()
+	updateRemainingSlots()
+	createSlotScore()
+	updateGameScore()
 
 
 func move(arrs: Array, isReverse: bool = false) -> void:
@@ -133,7 +167,7 @@ func updateCols() -> void:
 func updateSlotsByCols() -> void:
 	for i: int in cols.size():
 		for j: int in cols[i].size():
-			slots[j*4 + i] = cols[j][i]
+			slots[j*4 + i] = cols[i][j]
 
 
 func updateSlotsScore() -> void:
@@ -153,5 +187,8 @@ func createSlotScore(_score: int = -1) -> void:
 		slots[randSlotIndex] = score
 		
 		updateSlotsScore()
+	
+	if not canMove():
+		Debug.printWarning("Game Over !!!")
 
 #endregion
