@@ -3,20 +3,21 @@
 [ext_resource type="FontFile" uid="uid://bkhnxruyird0e" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_41jff"]
 [ext_resource type="Script" uid="uid://dlnqh1mhsu5vt" path="res://Game/2048/Scenes/Core/SlotGridContainer.gd" id="2_evvmv"]
 [ext_resource type="PackedScene" uid="uid://buvo8jsk4yha1" path="res://Game/2048/UI/Slot.tscn" id="2_mnjgj"]
+[ext_resource type="Script" uid="uid://rixcrd4igw7i" path="res://Game/2048/Scenes/Core/MainButtonGroup.gd" id="4_8jaxn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb44h"]
-bg_color = Color(0.7882353, 0.69411767, 0.6, 1)
+bg_color = Color(0.98039216, 0.972549, 0.9372549, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mnjgj"]
 font = ExtResource("1_41jff")
 font_size = 48
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
+font_color = Color(0.46666667, 0.43137255, 0.39607844, 1)
+shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.84705883)
-shadow_offset = Vector2(4, 2)
+shadow_offset = Vector2(2, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41jff"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.73333335, 0.6784314, 0.627451, 1)
 corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
@@ -124,39 +125,40 @@ layout_mode = 2
 [node name="Slot16" parent="UI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SlotGridContainer" unique_id=2002234291 instance=ExtResource("2_mnjgj")]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer" unique_id=1415239233]
+[node name="MainButtonGroup" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer" unique_id=1415239233]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 32
+script = ExtResource("4_8jaxn")
 
-[node name="Button" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=230236977]
+[node name="Button" type="Button" parent="UI/PanelContainer/MarginContainer/MainButtonGroup" unique_id=230236977]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0.9764706, 0.9647059, 0.9490196, 1)
 theme_override_fonts/font = ExtResource("1_41jff")
 theme_override_font_sizes/font_size = 32
 text = "关闭"
 
-[node name="Button2" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1631954708]
+[node name="Restart" type="Button" parent="UI/PanelContainer/MarginContainer/MainButtonGroup" unique_id=1631954708]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0.9764706, 0.9647059, 0.9490196, 1)
 theme_override_fonts/font = ExtResource("1_41jff")
 theme_override_font_sizes/font_size = 32
 text = "重开"
 
-[node name="Button3" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1018579289]
+[node name="Button3" type="Button" parent="UI/PanelContainer/MarginContainer/MainButtonGroup" unique_id=1018579289]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0.9764706, 0.9647059, 0.9490196, 1)
 theme_override_fonts/font = ExtResource("1_41jff")
 theme_override_font_sizes/font_size = 32
 text = "撤回"
 
-[node name="Button4" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1773943112]
+[node name="Button4" type="Button" parent="UI/PanelContainer/MarginContainer/MainButtonGroup" unique_id=1773943112]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0.9764706, 0.9647059, 0.9490196, 1)
 theme_override_fonts/font = ExtResource("1_41jff")
 theme_override_font_sizes/font_size = 32
 text = "静音"

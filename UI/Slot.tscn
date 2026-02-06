@@ -23,6 +23,7 @@ shadow_color = Color(0, 0, 0, 0.8666667)
 shadow_offset = Vector2(4, 2)
 
 [node name="Slot" type="PanelContainer" unique_id=306544168]
+modulate = Color(0.8039216, 0.75686276, 0.7058824, 1)
 custom_minimum_size = Vector2(150, 150)
 offset_right = 40.0
 offset_bottom = 40.0

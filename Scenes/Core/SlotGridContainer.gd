@@ -12,7 +12,10 @@ extends GridContainer
 
 
 #region State
-
+var slots: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var rows: Array[Array] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+var cols: Array[Array] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+var remainingSlots: Array = range(16)
 #endregion
 
 
@@ -22,26 +25,133 @@ extends GridContainer
 
 
 #region Dependencies
-
+@onready var scoreLabel: Label = %ScoreLabel
 #endregion
 
 
 #region Lifecycles
 
 func _ready() -> void:
-	var children: Array[Node] = get_children()
-	for i: int in range(children.size()):
-		var s: Slot = children[i] as Slot
-		if s:
-			if i == 0:
-				s.score = 0
-			else:
-				s.score = pow(2, i%14)
+	for i:int in 2:
+		createSlotScore()
+	
+	updateGameScore()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_action_pressed("moveLeft"):
+			move(rows)
+			updateSlotsByRows()
+			updateRemainingSlots()
+			createSlotScore()
+		if event.is_action_pressed("moveRight"):
+			move(rows, true)
+			updateSlotsByRows()
+			updateRemainingSlots()
+			createSlotScore()
+		if event.is_action_pressed("moveUp"):
+			move(cols)
+			updateSlotsByCols()
+			updateRemainingSlots()
+			createSlotScore()
+		if event.is_action_pressed("moveDown"):
+			move(cols, true)
+			updateSlotsByCols()
+			updateRemainingSlots()
+			createSlotScore()
 
 #endregion
 
 
 #region GetAndSets
 
+
+#endregion
+
+
+#region Tools
+
+func updateRemainingSlots() -> void:
+	remainingSlots = []
+	for i: int in slots.size():
+		if slots[i] == 0: remainingSlots.append(i)
+
+
+func move(arrs: Array, isReverse: bool = false) -> void:
+	if isReverse:
+		for arr: int in arrs.size():
+			var right: int = arrs[arr].size() - 1
+			for left: int in range(arrs[arr].size()-1, -1, -1):
+				if arrs[arr][left] == 0: continue
+				var temp: int = arrs[arr][left]
+				arrs[arr][left] = arrs[arr][right]
+				arrs[arr][right] = temp
+				right -= 1
+		return
+	for arr: int in arrs.size():
+		var left: int = 0
+		for right: int in arrs[arr].size():
+			if arrs[arr][right] == 0: continue
+			var temp: int = arrs[arr][right]
+			arrs[arr][right] = arrs[arr][left]
+			arrs[arr][left] = temp
+			left += 1
+
+
+func restartGame() -> void:
+	slots = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	remainingSlots = range(16)
+	_ready()
+
+
+func updateGameScore() -> void:
+	var score: int = 0
+	for i: int in slots:
+		score += i
+	scoreLabel.text = "游戏分数：%s" % score
+
+
+func updateRows() -> void:
+	for i: int in slots.size(): 
+		var rowIndex: int = floori(i/4.0)
+		rows[rowIndex][i%4] = slots[i]
+
+
+func updateSlotsByRows() -> void:
+	for i: int in rows.size():
+		for j: int in rows[i].size():
+			slots[i*4 + j] = rows[i][j]
+
+
+func updateCols() -> void:
+	for i: int in slots.size(): 
+		var colIndex: int = floori(i/4.0)
+		cols[i%4][colIndex] = slots[i]
+
+
+func updateSlotsByCols() -> void:
+	for i: int in cols.size():
+		for j: int in cols[i].size():
+			slots[j*4 + i] = cols[j][i]
+
+
+func updateSlotsScore() -> void:
+	for i in get_child_count():
+		var slot: Slot = get_child(i)
+		slot.score = slots[i]
+	
+	updateRows()
+	updateCols()
+
+
+func createSlotScore(_score: int = -1) -> void:
+	var score: int = _score
+	if score == -1: score = 2 if randi() % 100 < 90 else 4
+	if remainingSlots.size() > 0:
+		var randSlotIndex: int = remainingSlots.pop_at(randi() % remainingSlots.size())
+		slots[randSlotIndex] = score
+		
+		updateSlotsScore()
 
 #endregion
