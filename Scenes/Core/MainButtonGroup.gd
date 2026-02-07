@@ -60,7 +60,7 @@ func onRestart_pressed() -> void:
 
 
 func onUndo_pressed() -> void:
-	pass
+	slotGridContainer.undoSlotsMove()
 
 
 func onSound_pressed() -> void:

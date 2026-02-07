@@ -2,7 +2,7 @@ class_name SlotGridContainer
 extends GridContainer
 
 #region Parameters
-
+@export var popLabelScene: PackedScene = preload("res://Game/2048/UI/PopLabel.tscn")
 #endregion
 
 
@@ -13,6 +13,7 @@ extends GridContainer
 
 #region State
 var slots: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var lastSlots: Array[int] = []
 var rows: Array[Array] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 var cols: Array[Array] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 var remainingSlots: Array = range(16)
@@ -26,6 +27,8 @@ var remainingSlots: Array = range(16)
 
 #region Dependencies
 @onready var scoreLabel: Label = %ScoreLabel
+@onready var uiEx: CanvasLayer = %UI_EX
+
 #endregion
 
 
@@ -45,6 +48,8 @@ func _input(event: InputEvent) -> void:
 			if event.is_action_pressed("moveRight"): moveRows(true)
 			if event.is_action_pressed("moveUp"): moveCols()
 			if event.is_action_pressed("moveDown"): moveCols(true)
+		else:
+			createPopLabel("当前方向无法移动！")
 
 #endregion
 
@@ -56,6 +61,28 @@ func _input(event: InputEvent) -> void:
 
 
 #region Tools
+
+func createPopLabel(_str: String) -> void:
+	var popLabel: PopLabel = popLabelScene.instantiate()
+	popLabel.text = _str
+	uiEx.add_child(popLabel)
+
+
+func saveLastSlots() -> void:
+	lastSlots = []
+	for i: int in slots: lastSlots.append(i)
+
+
+func undoSlotsMove() -> void:
+	if lastSlots.is_empty(): 
+		createPopLabel("无法撤回！")
+		return
+	slots = lastSlots
+	updateSlotsScore()
+	updateRemainingSlots()
+	updateGameScore()
+	lastSlots = []
+
 
 func mergeSlots(arrs: Array, isReverse: bool = false) -> void:
 	for arr in arrs.size():
@@ -106,6 +133,7 @@ func canMoveCols() -> bool:
 
 
 func moveRows(isReverse: bool = false) -> void:
+	saveLastSlots()
 	move(rows, isReverse)
 	mergeSlots(rows, isReverse)
 	updateSlotsByRows()
@@ -115,6 +143,7 @@ func moveRows(isReverse: bool = false) -> void:
 
 
 func moveCols(isReverse: bool = false) -> void:
+	saveLastSlots()
 	move(cols, isReverse)
 	mergeSlots(cols, isReverse)
 	updateSlotsByCols()

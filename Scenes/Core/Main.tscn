@@ -170,4 +170,5 @@ icon = SubResource("AtlasTexture_qjc0c")
 text = "声音"
 
 [node name="UI_EX" type="CanvasLayer" parent="." unique_id=1752384934]
+unique_name_in_owner = true
 layer = 2

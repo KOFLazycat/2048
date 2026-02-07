@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cvrbayk3goe4g"]
+
+[ext_resource type="FontFile" uid="uid://bkhnxruyird0e" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_u7nic"]
+[ext_resource type="Script" uid="uid://hg70qd5pw8ao" path="res://Game/2048/UI/PopLabel.gd" id="2_ctqk3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7nic"]
+font = ExtResource("1_u7nic")
+font_size = 48
+font_color = Color(0.46666667, 0.43137255, 0.39607844, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.84705883)
+shadow_offset = Vector2(2, 1)
+
+[node name="PopLabel" type="Label" unique_id=158810723]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -65.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "提示提示提示提示提示提示提示提示"
+label_settings = SubResource("LabelSettings_u7nic")
+script = ExtResource("2_ctqk3")
