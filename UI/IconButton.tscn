@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://brk8n125e5gsx"]
+
+[ext_resource type="Script" uid="uid://44b60oxxj10n" path="res://Game/2048/UI/IconButton.gd" id="1_580jb"]
+[ext_resource type="Texture2D" uid="uid://cej643k1obcve" path="res://Assets/Logos/ComedotLogo.png" id="2_7hbim"]
+[ext_resource type="FontFile" uid="uid://bkhnxruyird0e" path="res://Assets/Fonts/PixelOperator8.ttf" id="3_seh1a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_580jb"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 62
+corner_radius_top_right = 62
+corner_radius_bottom_right = 62
+corner_radius_bottom_left = 62
+shadow_color = Color(0, 0, 0, 0.7529412)
+shadow_size = 8
+shadow_offset = Vector2(8, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ty0yo"]
+font = ExtResource("3_seh1a")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.8666667)
+shadow_offset = Vector2(4, 2)
+
+[node name="IconButton" type="PanelContainer" unique_id=1027320775]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_580jb")
+script = ExtResource("1_580jb")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1550345534]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1650450668]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_7hbim")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=1306006325]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "关闭"
+label_settings = SubResource("LabelSettings_ty0yo")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -82,15 +82,26 @@ func canMove() -> bool:
 	if slots.has(0): 
 		return true
 	else:
-		for i: int in rows.size():
-			for j: int in rows[i].size() - 1:
-				if rows[i][j] == rows[i][j + 1]:
-					return true
-		for i: int in cols.size():
-			for j: int in cols[i].size() - 1:
-				if cols[i][j] == cols[i][j + 1]:
-					return true
-	
+		if canMoveRows() or canMoveCols():
+			return true
+	return false
+
+
+## 能否水平移动
+func canMoveRows() -> bool:
+	for i: int in rows.size():
+		for j: int in rows[i].size() - 1:
+			if rows[i][j] == rows[i][j + 1]:
+				return true
+	return false
+
+
+## 能否垂直移动
+func canMoveCols() -> bool:
+	for i: int in cols.size():
+		for j: int in cols[i].size() - 1:
+			if cols[i][j] == cols[i][j + 1]:
+				return true
 	return false
 
 
