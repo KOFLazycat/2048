@@ -3,6 +3,7 @@ extends GridContainer
 
 #region Parameters
 @export var popLabelScene: PackedScene = preload("res://Game/2048/UI/PopLabel.tscn")
+@export var gameOverScene: PackedScene = preload("res://Game/2048/UI/GameOverContainer.tscn")
 #endregion
 
 
@@ -136,6 +137,7 @@ func moveRows(isReverse: bool = false) -> void:
 	saveLastSlots()
 	move(rows, isReverse)
 	mergeSlots(rows, isReverse)
+	move(rows, isReverse)
 	updateSlotsByRows()
 	updateRemainingSlots()
 	createSlotScore()
@@ -146,6 +148,7 @@ func moveCols(isReverse: bool = false) -> void:
 	saveLastSlots()
 	move(cols, isReverse)
 	mergeSlots(cols, isReverse)
+	move(cols, isReverse)
 	updateSlotsByCols()
 	updateRemainingSlots()
 	createSlotScore()
@@ -184,6 +187,11 @@ func updateGameScore() -> void:
 	for i: int in slots:
 		score += i
 	scoreLabel.text = "游戏分数：%s" % score
+	if not canMove():
+		var gameOver: GameOverContainer = gameOverScene.instantiate()
+		gameOver.score = score
+		Tools.connectSignal(gameOver.gameOver, restartGame)
+		uiEx.add_child(gameOver)
 
 
 func updateRows() -> void:
@@ -227,8 +235,5 @@ func createSlotScore(_score: int = -1) -> void:
 		slots[randSlotIndex] = score
 		
 		updateSlotsScore()
-	
-	if not canMove():
-		Debug.printWarning("Game Over !!!")
 
 #endregion

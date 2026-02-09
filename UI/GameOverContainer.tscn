@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://ceyokovdfddvn"]
+
+[ext_resource type="Script" uid="uid://uq4qws1fm3t3" path="res://Game/2048/UI/GameOverContainer.gd" id="1_r22d7"]
+[ext_resource type="PackedScene" uid="uid://brk8n125e5gsx" path="res://Game/2048/UI/IconButton.tscn" id="2_1im2e"]
+[ext_resource type="Texture2D" uid="uid://u7227vs57eyx" path="res://Assets/Tiles/Kenney1Bit-Monochrome.png" id="3_oqoeo"]
+[ext_resource type="FontFile" uid="uid://bkhnxruyird0e" path="res://Assets/Fonts/PixelOperator8.ttf" id="4_ouy5a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r22d7"]
+bg_color = Color(0.73333335, 0.6784314, 0.627451, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+shadow_color = Color(0, 0, 0, 0.7411765)
+shadow_size = 8
+shadow_offset = Vector2(8, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouy5a"]
+atlas = ExtResource("3_oqoeo")
+region = Rect2(624, 304, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqoeo"]
+font = ExtResource("4_ouy5a")
+font_size = 96
+font_color = Color(0.46666667, 0.43137255, 0.39607844, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.654902)
+shadow_offset = Vector2(4, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_snosl"]
+font = ExtResource("4_ouy5a")
+font_size = 48
+font_color = Color(0.46666667, 0.43137255, 0.39607844, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.84705883)
+shadow_offset = Vector2(2, 1)
+
+[node name="GameOverContainer" type="PanelContainer" unique_id=1174329397]
+custom_minimum_size = Vector2(1280, 720)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r22d7")
+script = ExtResource("1_r22d7")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1719577522]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer" unique_id=739293879]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="Restart" parent="MarginContainer/GridContainer" unique_id=1027320775 instance=ExtResource("2_1im2e")]
+layout_mode = 2
+icon = SubResource("AtlasTexture_ouy5a")
+text = "重开"
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/GridContainer" unique_id=1863820356]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+text = "游戏结束"
+label_settings = SubResource("LabelSettings_oqoeo")
+
+[node name="Control" type="Control" parent="MarginContainer/GridContainer" unique_id=1924511415]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/GridContainer" unique_id=68782854]
+unique_name_in_owner = true
+layout_mode = 2
+text = "游戏分数："
+label_settings = SubResource("LabelSettings_snosl")
